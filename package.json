@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "http": "^0.0.1-security",
+    "node-cmd": "^5.0.0",
     "ws": "^8.14.2"
   }
 }

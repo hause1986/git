@@ -8,10 +8,14 @@ ghServ.setHost( 'git.graff-hause.lh' )
 ghServ.run()
 /**/
 
+ghGit.setBack( ghBack )
+
 /*обработчики сообщений*/
-ghBack.on( 'setpath', function( msg ){
+ghBack.on( 'SETPATH', function( msg ){
 	if( msg.length ){
 		ghGit.setPath( msg )
+		ghGit.getBranchs()
+		ghGit.getCommits()
 	}
 } )
 ghBack.run()

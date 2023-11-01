@@ -5,11 +5,7 @@ var GHFront = function(){
 	this.listFunc = []	
 }
 
-GHFront.prototype.setHost = function( host ){
-	if( host.length ){
-		this.host = host
-	}
-}
+
 
 GHFront.prototype.setPort = function( port ){
 	if( port ){
@@ -17,9 +13,14 @@ GHFront.prototype.setPort = function( port ){
 	}
 }
 
-GHFront.prototype.run = function(  ){
-	var listFunc = this.listFunc
-	this.socket = new WebSocket( 'ws://' + this.host + ':' + this.port )
+GHFront.prototype.start = function( ){
+	this.run( this.host, this.port )
+}
+
+GHFront.prototype.run = function( host, port ){
+	var start = this.start 
+	var listFunc = this.listFunc	
+	this.socket = new WebSocket( 'ws://' + host + ':' + port )
 	
 	this.socket.onopen = function() {
 		console.log( 'Соединение установлено.' )
@@ -27,10 +28,13 @@ GHFront.prototype.run = function(  ){
 	
 	this.socket.onclose = function() {
 		console.log( 'Соединение закрыто.' )
+		setTimeout( function(){			
+			start()
+		}, 1000 * 2 )
 	}
 	
 	this.socket.onerror = function( err ) {
-		console.log( 'Ошибка соединения.' )
+		console.log( 'Ошибка соединения.' )		
 	}
 	
 	this.socket.onmessage = function( event ) {
@@ -69,4 +73,3 @@ GHFront.prototype.on = function( formName, fn ){
 }
 
 var ghFront = new GHFront()
-ghFront.run()

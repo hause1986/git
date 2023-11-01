@@ -1,3 +1,8 @@
+#content{
+	margin:0 auto;
+	width:calc( 100vw - 20px );
+}
+
 .text,
 .butt a{
 	height: 40px;
@@ -56,4 +61,15 @@
 #files{	
 	width: calc( 20% - 7px);
 	margin-left: 5px;
+}
+
+#branch .item{
+	background-color:#2a5b85;
+	border-bottom: 1px solid #f4dd0b;
+	padding: 10px 5px;
+	cursor: pointer;
+}
+
+#branch .item:hover{
+	background-color:#1d3f5c;
 }
