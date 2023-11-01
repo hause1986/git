@@ -7,6 +7,7 @@ var arr_replace = function(arr, strTemp) {
     }
     return str
 }
+
 ///////////////////////////////////
 var preloader = function(){
 	var preL
@@ -20,63 +21,15 @@ var preloader = function(){
 	}, 1000 )	
 }
 /////////////////////
-var GHAjax = function(){
-	var XHR = ( 'onload' in new XMLHttpRequest() ) ? XMLHttpRequest : XDomainRequest
-	this.xhr = new XHR()	
-}
-GHAjax.prototype.send = function( opt ){
-	var key, val
-	var option = {
-		'url'		: '',
-		'method'	: 'GET',
-		'async'		: true,
-		'data'		: {},
-		'success'	: function(){
-			console.log( this.responseText )
-		},
-		'errore'	: function(){
-			console.log( this.responseText )
+
+var run = function (){
+	ghFront.setHost( 'git.graff-hause.lh' )	
+	
+	$( '#block-butt a' ).click( function( e ){
+		e.preventDefault()
+		var path = $( '#pathproject' ).val()
+		if( path.length ){
+			ghFront.send( 'setpath', path )
 		}
-	}
-	
-	for( key in option ){
-		val = option[key]
-		switch ( key ){
-			case 'url':
-				if( opt[key] == '' ){
-					return {
-						'STATUS'	: 'ERR',
-						'MESS'		: 'NON URL',
-					}
-				}else{
-					option[key] = opt[key]
-				}
-			break
-			case 'method':
-				if( option[key] != opt[key] ){
-					option[key] = 'POST'
-				}
-			break
-			case 'async':
-				if( option[key] != opt[key] ){
-					option[key] = false
-				}
-			break			
-			default:
-				if( opt[key] != null ){
-					option[key] = opt[key]
-				}
-			break			
-		}		
-	}
-	
-	this.xhr.onload = option.success
-	this.xhr.onerror = option.errore
-	
-	this.xhr.open(
-		option.method,		
-		option.url,
-		option.async
-	)	
-	this.xhr.send( JSON.stringify( option.data ) )
+	} )
 }

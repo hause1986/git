@@ -7,6 +7,7 @@
 		<link type='image/x-icon' rel='shortcut icon'  href='./img/favicon.ico' />		
 		
 		<script type='text/javascript' src='./js/jquery.js'></script>
+		<script type='text/javascript' src='./js/GHFront.js'></script>
 		<script type='text/javascript' src='./js/main.js'></script>		
 		<script type='text/javascript' src='./js/script.js'></script>
 		<link type='text/css' rel='stylesheet' href='./css/main.css'>
@@ -17,9 +18,22 @@
 	
 		<div id='header' class='center'>Graff Hause</div>
 		<div id='content'>
-			<div id='news-list'>
-				<ul class='listview dis-flex'></ul>	
+		
+			<div class='field row'>
+				<div class='col-md' id='block-input'>
+					<input type='text' class='text' id='pathproject' value='D:\WEB\PESOK\KMO' placeholder='Введите путь к проекту' >
+				</div>
+				<div class='butt col-md'  id='block-butt'>
+					<a href=''>Начать</a>
+				</div>
 			</div>
+			
+			<div class='field row' id='block-main'>
+				<div id='branch' class='col-md'></div>
+				<div id='commit' class='col-md'></div>
+				<div id='files' class='col-md'></div>
+			</div>
+			
 		</div>	
 
 	</body>
