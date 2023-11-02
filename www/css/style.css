@@ -42,34 +42,84 @@
 	height:calc( 100vh - 115px );
 }
 
+
 #branch,
 #commit,
 #files{
 	border: 1px solid #3498DB;
 	height: 100%;
+	overflow: auto;
 }
 
-#branch{
-	width: 20%;
+#branch,
+#files{
+	overflow: auto;
 }
 
-#commit{
-	width: calc( 60% - 8px);
-	margin-left: 5px;
+#branch .items,
+#files .items{
+	width: max-content;
+    min-width: 100%;
 }
 
-#files{	
-	width: calc( 20% - 7px);
-	margin-left: 5px;
-}
-
-#branch .item{
+#branch .item,
+#commit .item,
+#files .item{
 	background-color:#2a5b85;
 	border-bottom: 1px solid #f4dd0b;
 	padding: 10px 5px;
 	cursor: pointer;
 }
 
-#branch .item:hover{
+#branch .item:hover,
+#commit .item:hover,
+#files .item:hover{
 	background-color:#1d3f5c;
+}
+
+#branch .active,
+#commit .active{
+	background-color:#1d3f5c;
+}
+
+/**/
+#branch{
+	width: 20%;
+}
+
+/**/
+#commit{
+	width: calc( 60% - 8px);
+	margin-left: 5px;
+}
+
+#commit .items{
+	width: 100%;
+}
+
+#commit .item{	
+    display: flex;    
+    justify-content: space-between;	
+}
+
+#commit .name,
+#commit .date,
+#commit .comm{
+	padding-left: 10px;
+}
+
+#commit .name,
+#commit .date{
+	width:100px;	
+}
+
+#commit .comm{
+	width: calc( 100% - 200px );
+}
+
+/**/
+
+#files{	
+	width: calc( 20% - 7px);
+	margin-left: 5px;
 }

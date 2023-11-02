@@ -11,6 +11,8 @@ ghServ.run()
 ghGit.setBack( ghBack )
 
 /*обработчики сообщений*/
+
+/*установил путь к проекту*/
 ghBack.on( 'SETPATH', function( msg ){
 	if( msg.length ){
 		ghGit.setPath( msg )
@@ -18,6 +20,27 @@ ghBack.on( 'SETPATH', function( msg ){
 		ghGit.getCommits()
 	}
 } )
+/**/
+
+/*Получить список коммитов у ветке*/
+ghBack.on( 'COMMITS', function( msg ){
+	if( msg.length ){
+		ghGit.getCommits( msg )
+	}
+} )
+/**/
+
+/*перйти на ветку*/
+ghBack.on( 'SETBRANCH', function( msg ){
+	if( msg.length ){
+		ghGit.setBranch( msg )
+		ghGit.getBranchs()
+		ghGit.getCommits()		
+	}
+} )
+/**/
+
+
 ghBack.run()
 /**/
 

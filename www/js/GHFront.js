@@ -38,7 +38,7 @@ GHFront.prototype.run = function( host, port ){
 	}
 	
 	this.socket.onmessage = function( event ) {
-		console.log( event.data )
+		//console.log( event.data )
 		var jsonMess = JSON.parse( event.data )
 		jsonMess.FORM_NAME = jsonMess.FORM_NAME.toUpperCase()
 		if(
