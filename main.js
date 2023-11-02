@@ -33,9 +33,9 @@ ghBack.on( 'COMMITS', function( msg ){
 /*перйти на ветку*/
 ghBack.on( 'SETBRANCH', function( msg ){
 	if( msg.length ){
-		ghGit.setBranch( msg )
-		ghGit.getBranchs()
-		ghGit.getCommits()		
+		ghGit.setBranch( msg )		
+		//ghGit.getBranchs()
+		//ghGit.getCommits()		
 	}
 } )
 /**/
