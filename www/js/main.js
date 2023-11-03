@@ -134,15 +134,17 @@ var run = function (){
 	/*смена ветки*/
 	$( '#contecstMenu' ).on( 'click', '#checkout', function( e ){	
 		e.preventDefault()		
-		var nameBranch = $( this ).attr( 'data-branch' )
+		var nameBranch = $( '#contecstMenu' ).attr( 'data-branch' )		
 		var el = $( '#branch .item[data-name=' + nameBranch + ']' )
 		if( el.hasClass( 'active' ) ){
 			return 0
 		}
 		$( '#branch .item.active' ).removeClass( 'active' )
-		el.addClass( 'active' )
-		
+		el.addClass( 'active' )		
 		ghFront.send( 'SETBRANCH', nameBranch )
+		$( '#contecstMenu' )
+			.addClass( 'dis-non' )
+			.attr( 'data-branch', '' )
 	} )	
 	/**/
 	
