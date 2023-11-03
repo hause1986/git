@@ -75,6 +75,7 @@ var setContecstMenu = function(){
 		
 		if( e.button == 2 ){
 			var el = $( this )
+			var nameBranch = el.attr( 'data-name' )
 			if( mainBlock.hasClass( 'dis-non' ) ){
 				mainBlock.removeClass( 'dis-non' )
 			}			
@@ -83,7 +84,7 @@ var setContecstMenu = function(){
 			mainBlock.css( {
 				'top' : top + 'px',
 				'left' : left + 'px',
-			} )
+			} ).attr( 'data-branch', nameBranch )
 			return false
 		}
 		
@@ -131,15 +132,16 @@ var run = function (){
 	/**/
 	
 	/*смена ветки*/
-	$( '#content' ).on( 'dblclick', '#branch .item', function( e ){	
+	$( '#contecstMenu' ).on( 'click', '#checkout', function( e ){	
 		e.preventDefault()		
-		var el = $( this )		
+		var nameBranch = $( this ).attr( 'data-branch' )
+		var el = $( '#branch .item[data-name=' + nameBranch + ']' )
 		if( el.hasClass( 'active' ) ){
 			return 0
 		}
 		$( '#branch .item.active' ).removeClass( 'active' )
 		el.addClass( 'active' )
-		var nameBranch = el.data( 'name' )
+		
 		ghFront.send( 'SETBRANCH', nameBranch )
 	} )	
 	/**/
