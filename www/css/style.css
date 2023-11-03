@@ -1,0 +1,125 @@
+#content{
+	margin:0 auto;
+	width:calc( 100vw - 20px );
+}
+
+.text,
+.butt a{
+	height: 40px;
+	width: 100%;
+}
+
+.text{
+	padding: 0;
+	border: 0;
+	padding-left:10px;
+}
+
+.butt a {
+	background-color: #3498DB;
+	color: #ffffff;
+	display: block;		
+	font-weight: 300;
+	text-decoration: none;
+	text-align: center;
+	line-height: 40px;
+}
+
+.butt a:hover{
+	background-color: #227dba;
+}
+
+#block-input{
+	width: 80%;
+}
+
+#block-butt{
+	margin-left:20px;
+	width: calc( 20% - 20px );
+}
+
+#block-main{
+	height:calc( 100vh - 115px );
+}
+
+
+#branch,
+#commit,
+#files{
+	border: 1px solid #3498DB;
+	height: 100%;
+	overflow: auto;
+}
+
+#branch,
+#files{
+	overflow: auto;
+}
+
+#branch .items,
+#files .items{
+	width: max-content;
+    min-width: 100%;
+}
+
+#branch .item,
+#commit .item,
+#files .item{
+	background-color:#2a5b85;
+	border-bottom: 1px solid #f4dd0b;
+	padding: 10px 5px;
+	cursor: pointer;
+}
+
+#branch .item:hover,
+#commit .item:hover,
+#files .item:hover{
+	background-color:#1d3f5c;
+}
+
+#branch .active,
+#commit .active{
+	background-color:#1d3f5c;
+}
+
+/**/
+#branch{
+	width: 20%;
+}
+
+/**/
+#commit{
+	width: calc( 60% - 8px);
+	margin-left: 5px;
+}
+
+#commit .items{
+	width: 100%;
+}
+
+#commit .item{	
+    display: flex;    
+    justify-content: space-between;	
+}
+
+#commit .name,
+#commit .date,
+#commit .comm{
+	padding-left: 10px;
+}
+
+#commit .name,
+#commit .date{
+	width:100px;	
+}
+
+#commit .comm{
+	width: calc( 100% - 200px );
+}
+
+/**/
+
+#files{	
+	width: calc( 20% - 7px);
+	margin-left: 5px;
+}
