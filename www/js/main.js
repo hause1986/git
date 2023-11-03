@@ -31,7 +31,78 @@ var preloader = function(){
 		preL.remove()
 	}, 1000 )	
 }
+
 /////////////////////
+var setContecstMenu = function(){	
+	var mainBlock = $( '#contecstMenu' )
+	
+	/*формеруем меню*/
+	var arMenu = [
+		{
+			'NAME'	:	'Перейти',
+			'ID'	:	'checkout',
+		},
+		{
+			'NAME'	:	'Ответвится',
+			'ID'	:	'newbranch',
+		},
+		{
+			'NAME'	:	'Переименовать',
+			'ID'	:	'rename',
+		},
+		{
+			'NAME'	:	'Rebase',
+			'ID'	:	'rebase',
+		},
+		{
+			'NAME'	:	'Merge',
+			'ID'	:	'merge',
+		},
+		{
+			'NAME'	:	'Удалить',
+			'ID'	:	'delete',
+		},		
+	]
+	
+	for( var key in arMenu ){
+		var val = arMenu[key]
+		var item = '<div class="itemCM" id="' + val.ID + '">' + val.NAME + '</div>'
+		mainBlock.append( item )
+	}
+	
+	/*событие для открытия меню*/
+	$( '#content' ).on( 'mousedown', '#branch .item', function( e ){
+		
+		if( e.button == 2 ){
+			var el = $( this )
+			if( mainBlock.hasClass( 'dis-non' ) ){
+				mainBlock.removeClass( 'dis-non' )
+			}			
+			var top = e.pageY
+			var left = e.pageX
+			mainBlock.css( {
+				'top' : top + 'px',
+				'left' : left + 'px',
+			} )
+			return false
+		}
+		
+	} )
+	
+	/*событие для закрытия меню*/
+	$( document ).on( 'click', function( e ){
+		if(
+				mainBlock.has( e.target ).length === 0
+			&&	!mainBlock.hasClass( 'dis-non' )
+		){
+			mainBlock.addClass( 'dis-non' )
+		}
+	} )
+	
+	
+}
+
+
 
 var run = function (){
 	

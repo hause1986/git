@@ -85,6 +85,7 @@
 /**/
 #branch{
 	width: 20%;
+	position:relative;
 }
 
 /**/
@@ -122,4 +123,23 @@
 #files{	
 	width: calc( 20% - 7px);
 	margin-left: 5px;
+}
+
+/**/
+#contecstMenu{
+	position: absolute;
+	right: 30px;	
+	background:#001021;
+	border: 1px solid #3498DB;
+	width: max-content;
+}
+
+#contecstMenu .itemCM{
+	border-bottom: 1px solid #f4dd0b;
+	padding: 10px 5px;
+	cursor: pointer;
+}
+
+#contecstMenu .itemCM:hover{
+	background:#112435;
 }
