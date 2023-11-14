@@ -59,6 +59,19 @@ ghBack.on( 'NEWBRANCH', function( msg ){
 	}
 } )
 
+/*Переименовать ветку*/
+ghBack.on( 'RENAME', function( msg ){
+	if( msg.NEW.length && msg.OLD.length ){
+		ghGit.renameBranch( msg )
+			.then( function( data ){
+				ghGit.getBranchs()
+			} )
+			.catch( function( err ){
+				ghBack.send( 'ERR', err )
+			} )		
+	}
+} )
+
 /**/
 
 /*Удаляем ветку*/

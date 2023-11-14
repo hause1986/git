@@ -50,6 +50,7 @@ var setContecstMenu = function(){
 			'NAME'	:	'Переименовать',
 			'ID'	:	'rename',
 		},
+		/*
 		{
 			'NAME'	:	'Rebase',
 			'ID'	:	'rebase',
@@ -58,6 +59,7 @@ var setContecstMenu = function(){
 			'NAME'	:	'Merge',
 			'ID'	:	'merge',
 		},
+		*/
 		{
 			'NAME'	:	'Удалить',
 			'ID'	:	'delete',
@@ -164,6 +166,25 @@ var run = function (){
 				.attr( 'data-branch', '' )
 		}
 	} )	
+	
+		/*переименовать*/
+	$( '#contecstMenu' ).on( 'click', '#rename', function( e ){
+		e.preventDefault()
+		var nameBranch = $( '#contecstMenu' ).attr( 'data-branch' )
+		var newnameBranch = ''
+		var el = $( '#branch .item[data-name=' + nameBranch + ']' )
+		
+		newnameBranch = prompt( 'Введите название ветки' )
+		if( newnameBranch != 'null' ){			
+			ghFront.send( 'RENAME', {
+				'NEW'	:	newnameBranch,
+				'OLD'	:	nameBranch,
+			} )
+			$( '#contecstMenu' )
+				.addClass( 'dis-non' )
+				.attr( 'data-branch', '' )
+		}
+	} )
 	
 	/*удалить выбраную ветку*/
 	$( '#contecstMenu' ).on( 'click', '#delete', function( e ){
