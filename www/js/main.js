@@ -108,6 +108,10 @@ var setContecstMenu = function(){
 
 
 var run = function (){
+	setTimeout( function(){
+		/*Получить все гит проекты на данно ПК*/
+		ghFront.send( 'GETLISTGIT', {} )		
+	}, 1000 )	
 	
 	/*указание проекта*/
 	$( '#content' ).on( 'click', '#block-butt a', function( e ){
@@ -201,6 +205,17 @@ var run = function (){
 	} )
 	
 	
+	/*Получить все гит проекты на данно ПК*/
+	ghFront.on( 'GETLISTGIT', function( msg ){
+		console.log( msg )
+		var list = $( '#pathprojectgit' )
+		if( msg.length ){			
+			for( var key in msg ){				
+				list.append( '<option value=' + msg[key] + '>' )
+			}
+		}
+	} )
+	
 	/*получение списка веток*/
 	ghFront.on( 'BRANCHS', function( msg ){
 		var arItems = JSON.parse( msg )
@@ -247,8 +262,6 @@ var run = function (){
 		$( '#block-err' ).html( msg )
 	} )
 	/**/	
-	
-	
-	
-	ghFront.start()
+		
+	ghFront.start()	
 }

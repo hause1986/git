@@ -3,6 +3,30 @@ var ghServ = require( './lib/ghServer' )
 var ghBack = require( './lib/ghBack' )
 var ghGit = require( './lib/ghGit' )
 
+/*******************************************/
+var fs = require( 'fs' )
+var data = [  ]
+function getAllFolders( path ) {
+	var items = fs.readdirSync( path )
+	var folders = []
+
+	for( key in items ){
+		var val = items[key]
+
+		var itemPath = `${path}/${val}`
+		if ( fs.statSync( itemPath ).isDirectory() ) {
+			if( val == '.git' ){				
+				folders.push( `${path}/` )
+			}else{
+				folders = folders.concat( getAllFolders( itemPath ) )
+			}
+		}			
+	}
+
+	return folders
+}
+/*******************************************/
+
 /*старт сервера*/
 ghServ.setHost( 'git.graff-hause.lh' )
 ghServ.run()
@@ -11,6 +35,12 @@ ghServ.run()
 ghGit.setBack( ghBack )
 
 /*обработчики сообщений*/
+
+
+ghBack.on( 'GETLISTGIT', function( msg ){
+	const data = getAllFolders( '/WEB' )	
+	ghBack.send( 'GETLISTGIT', data )	
+} )
 
 /*установил путь к проекту*/
 ghBack.on( 'SETPATH', function( msg ){
