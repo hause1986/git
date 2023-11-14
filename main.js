@@ -45,6 +45,36 @@ ghBack.on( 'SETBRANCH', function( msg ){
 } )
 /**/
 
+/*Создание новой ветки*/
+ghBack.on( 'NEWBRANCH', function( msg ){
+	if( msg.length ){
+		ghGit.newBranch( msg )
+			.then( function( data ){
+				ghGit.getBranchs()
+				ghGit.getCommits()
+			} )
+			.catch( function( err ){
+				ghBack.send( 'ERR', err )
+			} )		
+	}
+} )
+
+/**/
+
+/*Удаляем ветку*/
+ghBack.on( 'DELETEBRANCH', function( msg ){
+	if( msg.length ){
+		ghGit.deleteBranch( msg )
+			.then( function( data ){
+				ghGit.getBranchs()				
+			} )
+			.catch( function( err ){
+				ghBack.send( 'ERR', err )
+			} )
+	}
+} )
+/**/
+
 ghBack.run()
 /**/
 

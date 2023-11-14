@@ -132,8 +132,8 @@ var run = function (){
 	/**/
 	
 	/*смена ветки*/
-	$( '#contecstMenu' ).on( 'click', '#checkout', function( e ){	
-		e.preventDefault()		
+	$( '#contecstMenu' ).on( 'click', '#checkout', function( e ){
+		e.preventDefault()
 		var nameBranch = $( '#contecstMenu' ).attr( 'data-branch' )		
 		var el = $( '#branch .item[data-name=' + nameBranch + ']' )
 		if( el.hasClass( 'active' ) ){
@@ -147,6 +147,37 @@ var run = function (){
 			.attr( 'data-branch', '' )
 	} )	
 	/**/
+	
+	/*ответвиться от выбраной*/
+	$( '#contecstMenu' ).on( 'click', '#newbranch', function( e ){
+		e.preventDefault()
+		var nameBranch = $( '#contecstMenu' ).attr( 'data-branch' )
+		var newnameBranch = ''
+		var el = $( '#branch .item[data-name=' + nameBranch + ']' )
+		
+		newnameBranch = prompt( 'Введите название ветки' )
+		if( newnameBranch != 'null' ){		
+			ghFront.send( 'SETBRANCH', nameBranch )			
+			ghFront.send( 'NEWBRANCH', newnameBranch )
+			$( '#contecstMenu' )
+				.addClass( 'dis-non' )
+				.attr( 'data-branch', '' )
+		}
+	} )	
+	
+	/*удалить выбраную ветку*/
+	$( '#contecstMenu' ).on( 'click', '#delete', function( e ){
+		e.preventDefault()
+		var nameBranch = $( '#contecstMenu' ).attr( 'data-branch' )
+		var el = $( '#branch .item[data-name=' + nameBranch + ']' )
+		if( el.hasClass( 'active' ) ){
+			return 0
+		}			
+		ghFront.send( 'DELETEBRANCH', nameBranch )
+		$( '#contecstMenu' )
+			.addClass( 'dis-non' )
+			.attr( 'data-branch', '' )		
+	} )
 	
 	
 	/*получение списка веток*/
